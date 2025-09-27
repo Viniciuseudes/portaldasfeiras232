@@ -13,7 +13,10 @@ export function LaunchSection() {
   };
 
   return (
-    <section className="relative bg-white py-20 lg:py-32 overflow-hidden">
+    <section
+      id="lanc"
+      className="relative bg-white py-20 lg:py-32 overflow-hidden"
+    >
       <WatermarkShapes />
 
       <div className="container mx-auto px-4 relative z-10">

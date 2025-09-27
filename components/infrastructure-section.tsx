@@ -3,7 +3,10 @@ import { Button } from "@/components/ui/button";
 
 export function InfrastructureSection() {
   return (
-    <section className="relative bg-primary py-20 lg:py-32 overflow-hidden">
+    <section
+      id="estrutura"
+      className="relative bg-primary py-20 lg:py-32 overflow-hidden"
+    >
       <WatermarkShapes />
 
       <div className="container mx-auto px-4 relative z-10">

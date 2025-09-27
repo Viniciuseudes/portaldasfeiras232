@@ -1,78 +1,80 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Menu, X, Phone } from "lucide-react"
+import { useState } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Menu, X, Phone } from "lucide-react";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Função que rola a página suavemente até a seção desejada
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-      setIsMenuOpen(false)
+      // Calcula a altura do header para descontar do scroll e alinhar perfeitamente
+      const headerOffset = 80; // Altura do header em pixels (ajuste se necessário)
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+      setIsMenuOpen(false); // Fecha o menu mobile após o clique
     }
-  }
+  };
+
+  // Lista de links do menu para facilitar a manutenção
+  const navLinks = [
+    { label: "Início", sectionId: "inicio" },
+    { label: "Lançamento", sectionId: "lanc" },
+    { label: "Estrutura", sectionId: "estrutura" },
+    { label: "Polo Têxtil", sectionId: "polo-textil" },
+    { label: "Localização", sectionId: "localizacao" },
+    { label: "Benefícios", sectionId: "beneficios" },
+    { label: "Contato", sectionId: "contato" },
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <div className="flex items-center">
-            <div className="text-2xl lg:text-3xl font-bold text-brand-blue">
-              Portal das Feiras <span className="text-brand-red">232</span>
-            </div>
+          <div className="flex-shrink-0">
+            <a
+              href="#inicio"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("inicio");
+              }}
+              className="cursor-pointer"
+            >
+              <Image
+                src="/image.png" // <-- SUBSTITUA PELO NOME DO SEU ARQUIVO DE LOGO
+                alt="Logo Portal das Feiras 232"
+                width={180} // Ajuste a largura conforme necessário
+                height={45} // Ajuste a altura conforme necessário
+                priority // Carrega a logo com prioridade
+              />
+            </a>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Navegação Desktop */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection("inicio")}
-              className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
-            >
-              Início
-            </button>
-            <button
-              onClick={() => scrollToSection("oportunidade")}
-              className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
-            >
-              Oportunidade
-            </button>
-            <button
-              onClick={() => scrollToSection("estrutura")}
-              className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
-            >
-              Estrutura
-            </button>
-            <button
-              onClick={() => scrollToSection("polo-textil")}
-              className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
-            >
-              Polo Têxtil
-            </button>
-            <button
-              onClick={() => scrollToSection("localizacao")}
-              className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
-            >
-              Localização
-            </button>
-            <button
-              onClick={() => scrollToSection("beneficios")}
-              className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
-            >
-              Benefícios
-            </button>
-            <button
-              onClick={() => scrollToSection("contato")}
-              className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
-            >
-              Contato
-            </button>
+            {navLinks.map((link) => (
+              <button
+                key={link.sectionId}
+                onClick={() => scrollToSection(link.sectionId)}
+                className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
+              >
+                {link.label}
+              </button>
+            ))}
           </nav>
 
-          {/* CTA Button */}
+          {/* Botão CTA Desktop */}
           <div className="hidden lg:flex items-center space-x-4">
             <Button
               size="lg"
@@ -80,7 +82,7 @@ export function Header() {
               onClick={() =>
                 window.open(
                   "https://wa.me/5581999999999?text=Olá! Gostaria de garantir meu espaço no Portal das Feiras 232",
-                  "_blank",
+                  "_blank"
                 )
               }
             >
@@ -89,68 +91,40 @@ export function Header() {
             </Button>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Botão Menu Mobile */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2 text-gray-700 hover:text-brand-blue transition-colors"
+            aria-label="Abrir menu"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Navegação Mobile */}
         {isMenuOpen && (
           <div className="lg:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-4">
-              <button
-                onClick={() => scrollToSection("inicio")}
-                className="text-left text-gray-700 hover:text-brand-blue transition-colors font-medium py-2"
-              >
-                Início
-              </button>
-              <button
-                onClick={() => scrollToSection("oportunidade")}
-                className="text-left text-gray-700 hover:text-brand-blue transition-colors font-medium py-2"
-              >
-                Oportunidade
-              </button>
-              <button
-                onClick={() => scrollToSection("estrutura")}
-                className="text-left text-gray-700 hover:text-brand-blue transition-colors font-medium py-2"
-              >
-                Estrutura
-              </button>
-              <button
-                onClick={() => scrollToSection("polo-textil")}
-                className="text-left text-gray-700 hover:text-brand-blue transition-colors font-medium py-2"
-              >
-                Polo Têxtil
-              </button>
-              <button
-                onClick={() => scrollToSection("localizacao")}
-                className="text-left text-gray-700 hover:text-brand-blue transition-colors font-medium py-2"
-              >
-                Localização
-              </button>
-              <button
-                onClick={() => scrollToSection("beneficios")}
-                className="text-left text-gray-700 hover:text-brand-blue transition-colors font-medium py-2"
-              >
-                Benefícios
-              </button>
-              <button
-                onClick={() => scrollToSection("contato")}
-                className="text-left text-gray-700 hover:text-brand-blue transition-colors font-medium py-2"
-              >
-                Contato
-              </button>
+              {navLinks.map((link) => (
+                <button
+                  key={link.sectionId}
+                  onClick={() => scrollToSection(link.sectionId)}
+                  className="text-left text-gray-700 hover:text-brand-blue transition-colors font-medium py-2"
+                >
+                  {link.label}
+                </button>
+              ))}
               <Button
                 size="lg"
                 className="bg-brand-red hover:bg-brand-red/90 text-white font-bold mt-4 rounded-xl"
                 onClick={() =>
                   window.open(
                     "https://wa.me/5581999999999?text=Olá! Gostaria de garantir meu espaço no Portal das Feiras 232",
-                    "_blank",
+                    "_blank"
                   )
                 }
               >
@@ -162,5 +136,5 @@ export function Header() {
         )}
       </div>
     </header>
-  )
+  );
 }
