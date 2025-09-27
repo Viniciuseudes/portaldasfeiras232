@@ -9,15 +9,103 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { SectionDivider } from "./section-divider";
+import { cn } from "@/lib/utils";
+
+// Itens do grid ajustados para o layout final e exato do seu esquema
+const gridItems = [
+  {
+    id: "moda",
+    content: (
+      <h2 className="text-6xl font-extrabold text-white tracking-wider">
+        MODA
+      </h2>
+    ),
+    className: "bg-brand-red",
+    gridArea: "1 / 1 / 2 / 4", // Mais largo
+    animationDelay: "0s",
+  },
+  {
+    id: "green-square",
+    content: null,
+    className: "bg-lime-300", // Menor
+    gridArea: "1 / 4 / 2 / 5",
+    animationDelay: "0.5s",
+  },
+  {
+    id: "logo",
+    content: (
+      <Image
+        src="/image.png"
+        alt="Logo Portal das Feiras 232"
+        width={100}
+        height={25}
+      />
+    ),
+    className: "bg-white border border-gray-100",
+    gridArea: "2 / 1 / 3 / 3",
+    animationDelay: "1s",
+  },
+  {
+    id: "empreendedorismo",
+    content: (
+      <h3 className="text-5xl font-semibold text-white text-center leading-tight">
+        empreen- dedorismo
+      </h3>
+    ),
+    className: "bg-teal-400",
+    gridArea: "2 / 3 / 3 / 5",
+    animationDelay: "1.5s",
+  },
+  {
+    id: "inovacao",
+    content: (
+      <h2 className="text-7xl font-bold text-white tracking-wide">inovação</h2>
+    ),
+    className: "bg-brand-blue",
+    gridArea: "3 / 1 / 9 / 6",
+    animationDelay: "2s",
+  },
+  {
+    id: "do-do-do",
+    content: (
+      <div className="flex flex-col items-center justify-around h-full text-2xl font-bold text-gray-700 py-2">
+        <span>D</span>
+        <span>o</span>
+        <span className="hidden sm:inline">D</span>
+        <span className="hidden sm:inline">o</span>
+      </div>
+    ),
+    className: "bg-white border-2 border-black",
+    gridArea: "1 / 5 / 3 / 6", // Novo elemento vertical
+    animationDelay: "2.5s",
+  },
+  {
+    id: "tall-image",
+    // --- ATENÇÃO: SUBSTITUIR PELA IMAGEM CORRETA ---
+    content: (
+      <Image
+        src="/modern-commercial-complex-3d-mockup-fashion-retail.jpg"
+        alt="Imagem alta de placeholder"
+        layout="fill"
+        objectFit="cover"
+      />
+    ),
+    className: "p-0 overflow-hidden bg-gray-200",
+    gridArea: "1 / 6 / 9 / 8", // Nova imagem alta
+    animationDelay: "3s",
+  },
+];
 
 export function HeroSection() {
   return (
     <Dialog>
-      <section id="inicio" className="relative w-full min-h-screen bg-white">
-        <div className="container mx-auto grid lg:grid-cols-2 gap-8 items-center min-h-screen px-4 sm:px-6 lg:px-8">
+      <section
+        id="inicio"
+        className="relative w-full min-h-screen bg-white flex items-center"
+      >
+        <div className="container mx-auto grid lg:grid-cols-2 gap-x-8 items-center min-h-screen px-4 sm:px-6 lg:px-8 py-24 lg:py-0">
           {/* Lado do Texto */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left z-10 py-16 lg:py-0">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left z-10">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight mb-4">
               O Futuro do Comércio de Moda do Nordeste Começa Aqui.
             </h1>
@@ -36,51 +124,36 @@ export function HeroSection() {
             </DialogTrigger>
           </div>
 
-          {/* Lado dos Carrosséis com Placeholders (Apenas em Desktop) */}
-          <div className="hidden lg:flex relative h-[600px] gap-4 overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-white to-transparent z-10" />
-            <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white to-transparent z-10" />
-
-            {/* Coluna 1: Rola para cima */}
-            <div className="flex flex-col gap-4 animate-scroll-up">
-              {/* Placeholders - Repetidos para loop */}
-              <div className="w-full h-[400px] rounded-2xl bg-gray-200" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-300" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-200" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-300" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-200" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-300" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-200" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-300" />
-            </div>
-
-            {/* Coluna 2: Rola para baixo */}
-            <div className="flex flex-col gap-4 animate-scroll-down">
-              {/* Placeholders - Repetidos para loop */}
-              <div className="w-full h-[400px] rounded-2xl bg-gray-300" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-200" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-300" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-200" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-300" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-200" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-300" />
-              <div className="w-full h-[400px] rounded-2xl bg-gray-200" />
-            </div>
-          </div>
-
-          {/* Imagem Estática (Apenas em Mobile) */}
-          <div className="lg:hidden w-full px-4">
-            <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="/modern-commercial-complex-3d-mockup-fashion-retail.jpg"
-                alt="Visão do complexo Portal das Feiras 232"
-                layout="fill"
-                objectFit="cover"
-              />
+          {/* Lado do Mosaico Animado */}
+          <div className="flex items-center justify-center lg:justify-start">
+            <div className="relative w-full aspect-[1.4/1] max-w-xl">
+              <div
+                className="grid h-full w-full gap-2"
+                style={{
+                  gridTemplateColumns: "repeat(6, 1fr)",
+                  gridTemplateRows: "repeat(3, 1fr)",
+                }}
+              >
+                {gridItems.map((item) => (
+                  <div
+                    key={item.id}
+                    className={cn(
+                      "flex items-center justify-center rounded-lg p-4 text-center transition-opacity duration-500",
+                      item.className
+                    )}
+                    style={{
+                      gridArea: item.gridArea,
+                      animation: `cycle-visibility 8s infinite`,
+                      animationDelay: item.animationDelay,
+                    }}
+                  >
+                    {item.content}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-        <SectionDivider />
       </section>
 
       <DialogContent className="sm:max-w-[625px]">

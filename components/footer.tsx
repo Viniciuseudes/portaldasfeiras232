@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { Phone, Mail, MapPin, Clock } from "lucide-react"
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export function Footer() {
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <footer id="contato" className="bg-primary text-primary-foreground">
@@ -20,8 +20,8 @@ export function Footer() {
               Portal das Feiras <span className="text-accent">232</span>
             </div>
             <p className="text-primary-foreground/80 mb-6 text-pretty">
-              O novo complexo de moda de São Caetano-PE. Transformando o comércio regional e fortalecendo o polo têxtil
-              do Agreste.
+              O novo complexo de moda de São Caetano-PE. Transformando o
+              comércio regional e fortalecendo o polo têxtil do Agreste.
             </p>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3">
@@ -54,7 +54,7 @@ export function Footer() {
                 Início
               </button>
               <button
-                onClick={() => scrollToSection("oportunidade")}
+                onClick={() => scrollToSection("lanc")}
                 className="text-left text-primary-foreground/80 hover:text-accent transition-colors"
               >
                 Oportunidade
@@ -111,9 +111,11 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center">
-          <p className="text-primary-foreground/60">© 2025 Portal das Feiras 232. Todos os direitos reservados.</p>
+          <p className="text-primary-foreground/60">
+            © 2025 Portal das Feiras 232. @EZZECOMUNICACAO.
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }
