@@ -1,10 +1,15 @@
-import { Card } from "@/components/ui/card"
-import { TrendingUp, MapPin, Users } from "lucide-react"
+import { Card } from "@/components/ui/card";
+import { TrendingUp, MapPin, Users } from "lucide-react";
+import { DecorativeShapes } from "./decorative-shapes";
 
 export function TextilePoleSection() {
   return (
-    <section id="polo-textil" className="py-20 lg:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="polo-textil"
+      className="relative py-20 lg:py-32 overflow-hidden"
+    >
+      <DecorativeShapes />
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
@@ -13,12 +18,13 @@ export function TextilePoleSection() {
                 Importância do Polo Têxtil do Agreste
               </h2>
               <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed text-pretty mb-6">
-                Caruaru, Toritama e Santa Cruz já movimentam bilhões todos os anos. Agora, o Portal das Feiras 232
-                potencializa esse movimento com uma experiência moderna e planejada.
+                Caruaru, Toritama e Santa Cruz já movimentam bilhões todos os
+                anos. Agora, o Portal das Feiras 232 potencializa esse movimento
+                com uma experiência moderna e planejada.
               </p>
               <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed text-pretty">
-                Faça parte do maior polo de confecção do Brasil e aproveite o crescimento contínuo deste mercado
-                estratégico.
+                Faça parte do maior polo de confecção do Brasil e aproveite o
+                crescimento contínuo deste mercado estratégico.
               </p>
             </div>
 
@@ -30,8 +36,12 @@ export function TextilePoleSection() {
                     <TrendingUp className="w-6 h-6 text-primary-foreground" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-primary">R$ 8 Bi</div>
-                    <div className="text-muted-foreground">Movimentação anual do polo</div>
+                    <div className="text-2xl font-bold text-primary">
+                      R$ 8 Bi
+                    </div>
+                    <div className="text-muted-foreground">
+                      Movimentação anual do polo
+                    </div>
                   </div>
                 </div>
               </Card>
@@ -42,8 +52,12 @@ export function TextilePoleSection() {
                     <MapPin className="w-6 h-6 text-secondary-foreground" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-secondary">3 Cidades</div>
-                    <div className="text-muted-foreground">Principais centros têxteis</div>
+                    <div className="text-2xl font-bold text-secondary">
+                      3 Cidades
+                    </div>
+                    <div className="text-muted-foreground">
+                      Principais centros têxteis
+                    </div>
                   </div>
                 </div>
               </Card>
@@ -55,7 +69,9 @@ export function TextilePoleSection() {
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-accent">500k+</div>
-                    <div className="text-muted-foreground">Empregos gerados</div>
+                    <div className="text-muted-foreground">
+                      Empregos gerados
+                    </div>
                   </div>
                 </div>
               </Card>
@@ -64,5 +80,5 @@ export function TextilePoleSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

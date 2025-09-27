@@ -1,12 +1,14 @@
-import { Card } from "@/components/ui/card"
-import { Users, RefreshCw, Shield, Eye } from "lucide-react"
+import { Card } from "@/components/ui/card";
+import { Users, RefreshCw, Shield, Eye } from "lucide-react";
+import { DecorativeShapes } from "./decorative-shapes";
 
 export function BenefitsSection() {
   const benefits = [
     {
       icon: Users,
       title: "Alta Rotatividade de Clientes",
-      description: "Fluxo constante de compradores de toda a região do Agreste e além",
+      description:
+        "Fluxo constante de compradores de toda a região do Agreste e além",
     },
     {
       icon: RefreshCw,
@@ -21,13 +23,18 @@ export function BenefitsSection() {
     {
       icon: Eye,
       title: "Visibilidade Regional",
-      description: "Exposição da sua marca para milhares de clientes diariamente",
+      description:
+        "Exposição da sua marca para milhares de clientes diariamente",
     },
-  ]
+  ];
 
   return (
-    <section id="beneficios" className="py-20 lg:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="beneficios"
+      className="relative py-20 lg:py-32 overflow-hidden"
+    >
+      <DecorativeShapes />
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -35,7 +42,8 @@ export function BenefitsSection() {
               Benefícios para os Lojistas
             </h2>
             <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Vantagens exclusivas para quem escolhe fazer parte do Portal das Feiras 232
+              Vantagens exclusivas para quem escolhe fazer parte do Portal das
+              Feiras 232
             </p>
           </div>
 
@@ -49,13 +57,17 @@ export function BenefitsSection() {
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
                   <benefit.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 text-balance">{benefit.title}</h3>
-                <p className="text-muted-foreground text-pretty">{benefit.description}</p>
+                <h3 className="text-lg font-semibold text-foreground mb-3 text-balance">
+                  {benefit.title}
+                </h3>
+                <p className="text-muted-foreground text-pretty">
+                  {benefit.description}
+                </p>
               </Card>
             ))}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
