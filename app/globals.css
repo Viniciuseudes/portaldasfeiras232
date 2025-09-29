@@ -264,14 +264,18 @@
   .animate-pulse-whatsapp {
     animation: pulse 2s infinite;
   }
-    @keyframes cycle-visibility {
-    0%, 70%, 100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    85% {
-      opacity: 0;
-      transform: scale(0.95);
-    }
+  @keyframes cycle-visibility {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
   }
+  25%, 75% {
+    opacity: 0.2;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 }

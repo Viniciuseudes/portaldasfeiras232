@@ -11,88 +11,89 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 
-// Itens do grid ajustados para o layout final e exato do seu esquema
 const gridItems = [
   {
     id: "moda",
     content: (
-      <h2 className="text-6xl font-extrabold text-white tracking-wider">
+      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-wider">
         MODA
       </h2>
     ),
     className: "bg-brand-red",
-    gridArea: "1 / 1 / 2 / 4", // Mais largo
+    gridArea: "1 / 1 / 2 / 4",
     animationDelay: "0s",
   },
   {
     id: "green-square",
     content: null,
-    className: "bg-lime-300", // Menor
+    className: "bg-lime-300",
     gridArea: "1 / 4 / 2 / 5",
-    animationDelay: "0.5s",
+    animationDelay: "0.8s",
   },
   {
     id: "logo",
     content: (
       <Image
-        src="/image.png"
+        src="/logo2.png"
         alt="Logo Portal das Feiras 232"
-        width={100}
-        height={25}
+        width={300}
+        height={100}
       />
     ),
     className: "bg-white border border-gray-100",
     gridArea: "2 / 1 / 3 / 3",
-    animationDelay: "1s",
+    animationDelay: "1.6s",
   },
   {
     id: "empreendedorismo",
     content: (
-      <h3 className="text-5xl font-semibold text-white text-center leading-tight">
+      <h3 className="text-4xl sm:text-4xl lg:text-4xl font-semibold text-white text-center leading-tight">
         empreen- dedorismo
       </h3>
     ),
     className: "bg-teal-400",
     gridArea: "2 / 3 / 3 / 5",
-    animationDelay: "1.5s",
+    animationDelay: "2.4s",
   },
   {
     id: "inovacao",
     content: (
-      <h2 className="text-7xl font-bold text-white tracking-wide">inovação</h2>
+      <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-wide">
+        inovação
+      </h2>
     ),
     className: "bg-brand-blue",
     gridArea: "3 / 1 / 9 / 6",
-    animationDelay: "2s",
+    animationDelay: "3.2s",
   },
   {
     id: "do-do-do",
     content: (
-      <div className="flex flex-col items-center justify-around h-full text-2xl font-bold text-gray-700 py-2">
-        <span>D</span>
-        <span>o</span>
-        <span className="hidden sm:inline">D</span>
-        <span className="hidden sm:inline">o</span>
+      <div className="flex flex-col items-center justify-around h-full text-3xl lg:text-2xl font-bold text-gray-700 py-2">
+        <span>2</span>
+        <span></span>
+        <span>3</span>
+        <span className="hidden sm:inline"></span>
+        <span className="hidden sm:inline">2</span>
       </div>
     ),
     className: "bg-white border-2 border-black",
-    gridArea: "1 / 5 / 3 / 6", // Novo elemento vertical
-    animationDelay: "2.5s",
+    gridArea: "1 / 5 / 3 / 6",
+    animationDelay: "4s",
   },
   {
     id: "tall-image",
-    // --- ATENÇÃO: SUBSTITUIR PELA IMAGEM CORRETA ---
     content: (
       <Image
-        src="/modern-commercial-complex-3d-mockup-fashion-retail.jpg"
-        alt="Imagem alta de placeholder"
+        src="/mulher.png"
+        alt="mulher232"
         layout="fill"
         objectFit="cover"
       />
     ),
-    className: "p-0 overflow-hidden bg-gray-200",
-    gridArea: "1 / 6 / 9 / 8", // Nova imagem alta
-    animationDelay: "3s",
+    className: "relative p-0 overflow-hidden bg-gray-200",
+    gridArea: "1 / 6 / 9 / 9", // Expandido para a direita
+    animationDelay: "4.8s",
   },
 ];
 
@@ -103,9 +104,39 @@ export function HeroSection() {
         id="inicio"
         className="relative w-full min-h-screen bg-white flex items-center"
       >
-        <div className="container mx-auto grid lg:grid-cols-2 gap-x-8 items-center min-h-screen px-4 sm:px-6 lg:px-8 py-24 lg:py-0">
-          {/* Lado do Texto */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left z-10">
+        <div className="container mx-auto flex flex-col lg:grid lg:grid-cols-5 gap-x-8 items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 py-16 lg:py-0">
+          {/* Lado do Mosaico Animado (Vem primeiro no mobile) */}
+          <div className="flex items-center justify-center w-full lg:justify-start order-1 lg:order-2 lg:col-span-3">
+            <div className="relative w-full aspect-[1.5/1]">
+              <div
+                className="grid h-full w-full gap-2"
+                style={{
+                  gridTemplateColumns: "repeat(8, 1fr)",
+                  gridTemplateRows: "repeat(3, 1fr)",
+                }}
+              >
+                {gridItems.map((item) => (
+                  <div
+                    key={item.id}
+                    className={cn(
+                      "flex items-center justify-center rounded-lg p-4 text-center",
+                      item.className
+                    )}
+                    style={{
+                      gridArea: item.gridArea,
+                      animation: `cycle-visibility 12s infinite`,
+                      animationDelay: item.animationDelay,
+                    }}
+                  >
+                    {item.content}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Lado do Texto (Vem depois no mobile) */}
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left z-10 order-2 lg:order-1 lg:col-span-2 mt-12 lg:mt-0">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight mb-4">
               O Futuro do Comércio de Moda do Nordeste Começa Aqui.
             </h1>
@@ -122,36 +153,6 @@ export function HeroSection() {
                 QUERO SABER MAIS E SAIR NA FRENTE
               </Button>
             </DialogTrigger>
-          </div>
-
-          {/* Lado do Mosaico Animado */}
-          <div className="flex items-center justify-center lg:justify-start">
-            <div className="relative w-full aspect-[1.4/1] max-w-xl">
-              <div
-                className="grid h-full w-full gap-2"
-                style={{
-                  gridTemplateColumns: "repeat(6, 1fr)",
-                  gridTemplateRows: "repeat(3, 1fr)",
-                }}
-              >
-                {gridItems.map((item) => (
-                  <div
-                    key={item.id}
-                    className={cn(
-                      "flex items-center justify-center rounded-lg p-4 text-center transition-opacity duration-500",
-                      item.className
-                    )}
-                    style={{
-                      gridArea: item.gridArea,
-                      animation: `cycle-visibility 8s infinite`,
-                      animationDelay: item.animationDelay,
-                    }}
-                  >
-                    {item.content}
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>

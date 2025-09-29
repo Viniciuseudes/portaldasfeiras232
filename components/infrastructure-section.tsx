@@ -1,5 +1,6 @@
 import { WatermarkShapes } from "./watermark-shapes";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export function InfrastructureSection() {
   return (
@@ -28,25 +29,25 @@ export function InfrastructureSection() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
               <div
-                className="bg-primary text-primary-foreground px-6 py-4 rounded-2xl text-xl"
+                className="bg-primary text-primary-foreground px-6 py-4 rounded-2xl text-4xl"
                 style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.4)" }}
               >
                 + de 500 boxes
               </div>
               <div
-                className="bg-secondary text-secondary-foreground px-6 py-4 rounded-2xl text-xl"
+                className="bg-secondary text-secondary-foreground px-6 py-4 rounded-2xl text-3xl"
                 style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.4)" }}
               >
                 + de 40 lojas
               </div>
               <div
-                className="bg-muted text-primary px-6 py-4 rounded-2xl text-xl sm:col-span-2"
+                className="bg-muted text-primary px-6 py-4 rounded-2xl text-3xl sm:col-span-2"
                 style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.4)" }}
               >
                 + praça de alimentação completa
               </div>
               <div
-                className="bg-accent text-white px-6 py-4 rounded-2xl text-xl sm:col-span-2"
+                className="bg-accent text-white px-6 py-4 rounded-2xl text-3xl sm:col-span-2"
                 style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.4)" }}
               >
                 + estacionamento amplo <br /> e estrutura de apoio
@@ -63,23 +64,14 @@ export function InfrastructureSection() {
 
           {/* Espaço para a imagem */}
           <div className="relative">
-            <div className="aspect-square bg-white/10 rounded-2xl flex items-center justify-center">
-              <div className="text-center text-white/60">
-                <div className="w-24 h-24 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-12 h-12"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <p className="text-sm">Espaço para foto da mulher com caixas</p>
-              </div>
+            <div className="aspect-square bg-white/10 rounded-2xl overflow-hidden">
+              <Image
+                src="/estrutura.png"
+                alt="Mulher feliz segurando caixas de compras no Portal das Feiras 232"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-2xl"
+              />
             </div>
           </div>
         </div>

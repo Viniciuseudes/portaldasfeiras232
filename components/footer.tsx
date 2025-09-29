@@ -1,6 +1,7 @@
 "use client";
 
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import Image from "next/image"; // 1. Importe o componente Image
 
 export function Footer() {
   const scrollToSection = (sectionId: string) => {
@@ -16,8 +17,14 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="lg:col-span-2">
-            <div className="text-2xl lg:text-3xl font-bold font-[family-name:var(--font-poppins)] mb-4">
-              Portal das Feiras <span className="text-accent">232</span>
+            {/* 2. Substitua o texto pela imagem do logo */}
+            <div className="mb-4">
+              <Image
+                src="/image.png" // Caminho para a sua logo na pasta public
+                alt="Logo Portal das Feiras 232"
+                width={200} // Ajuste a largura conforme necessário
+                height={50} // Ajuste a altura conforme necessário
+              />
             </div>
             <p className="text-primary-foreground/80 mb-6 text-pretty">
               O novo complexo de moda de São Caetano-PE. Transformando o
@@ -26,7 +33,8 @@ export function Footer() {
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-accent" />
-                <span>(81) 99999-9999</span>
+                {/* 3. Atualize o número de telefone */}
+                <span>(81) 9 9383-1048</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-accent" />
