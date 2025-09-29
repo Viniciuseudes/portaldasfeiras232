@@ -15,8 +15,8 @@ const gridItems = [
   {
     id: "moda",
     content: (
-      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-wider">
-        MODA
+      <h2 className="text-8xl sm:text-5xl lg:text-2xl font-extrabold text-white tracking-wider">
+        EMPREENDERORISMO
       </h2>
     ),
     className: "bg-brand-red",
@@ -45,10 +45,10 @@ const gridItems = [
     animationDelay: "1.6s",
   },
   {
-    id: "empreendedorismo",
+    id: "moda",
     content: (
-      <h3 className="text-4xl sm:text-4xl lg:text-4xl font-semibold text-white text-center leading-tight">
-        empreen- dedorismo
+      <h3 className="text-4xl sm:text-4xl lg:text-7xl font-semibold text-white text-center leading-tight">
+        MODA
       </h3>
     ),
     className: "bg-teal-400",
@@ -69,15 +69,14 @@ const gridItems = [
   {
     id: "do-do-do",
     content: (
-      <div className="flex flex-col items-center justify-around h-full text-3xl lg:text-2xl font-bold text-gray-700 py-2">
-        <span>2</span>
-        <span></span>
-        <span>3</span>
-        <span className="hidden sm:inline"></span>
-        <span className="hidden sm:inline">2</span>
-      </div>
+      <Image
+        src="/LOGOVERTICAL.png"
+        alt="Portal das Feiras 232"
+        layout="fill"
+        objectFit="contain" // Garante que a imagem caiba sem distorcer
+      />
     ),
-    className: "bg-white border-2 border-black",
+    className: "bg-white border-0 border-black relative overflow-hidden p-0", // Removido o padding para ocupar todo o espaço
     gridArea: "1 / 5 / 3 / 6",
     animationDelay: "4s",
   },
@@ -92,7 +91,7 @@ const gridItems = [
       />
     ),
     className: "relative p-0 overflow-hidden bg-gray-200",
-    gridArea: "1 / 6 / 9 / 9", // Expandido para a direita
+    gridArea: "1 / 6 / 9 / 9",
     animationDelay: "4.8s",
   },
 ];
@@ -105,7 +104,6 @@ export function HeroSection() {
         className="relative w-full min-h-screen bg-white flex items-center"
       >
         <div className="container mx-auto flex flex-col lg:grid lg:grid-cols-5 gap-x-8 items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 py-16 lg:py-0">
-          {/* Lado do Mosaico Animado (Vem primeiro no mobile) */}
           <div className="flex items-center justify-center w-full lg:justify-start order-1 lg:order-2 lg:col-span-3">
             <div className="relative w-full aspect-[1.5/1]">
               <div
@@ -119,8 +117,8 @@ export function HeroSection() {
                   <div
                     key={item.id}
                     className={cn(
-                      "flex items-center justify-center rounded-lg p-4 text-center",
-                      item.className
+                      "flex items-center justify-center rounded-lg p-4 text-center", // Padding padrão para todos
+                      item.className // Classes específicas do item (que podem substituir o padding)
                     )}
                     style={{
                       gridArea: item.gridArea,
@@ -135,7 +133,6 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Lado do Texto (Vem depois no mobile) */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left z-10 order-2 lg:order-1 lg:col-span-2 mt-12 lg:mt-0">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight mb-4">
               O Futuro do Comércio de Moda do Nordeste Começa Aqui.
