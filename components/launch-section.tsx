@@ -3,14 +3,12 @@
 import { WatermarkShapes } from "./watermark-shapes";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { GoogleFormModal } from "./GoogleFormModal"; // 1. Importado o componente do Modal
+import { FileText } from "lucide-react"; // 2. Importado o ícone para consistência
 
 export function LaunchSection() {
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contato");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  // A função de scroll foi removida, pois não é mais necessária aqui
+  // const scrollToContact = () => { ... };
 
   return (
     <section
@@ -51,13 +49,17 @@ export function LaunchSection() {
               Garanta já seu espaço!
             </p>
 
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-4 mt-8 h-auto rounded-lg transition-transform transform hover:scale-105"
-              onClick={scrollToContact}
-            >
-              PREENCHER FORMULÁRIO
-            </Button>
+            {/* 3. Botão agora está envolvido pelo GoogleFormModal */}
+            <GoogleFormModal>
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-4 mt-8 h-auto rounded-lg transition-transform transform hover:scale-105"
+                // O onClick foi removido daqui
+              >
+                <FileText className="w-5 h-5 mr-2" />
+                PREENCHER FORMULÁRIO
+              </Button>
+            </GoogleFormModal>
           </div>
         </div>
       </div>

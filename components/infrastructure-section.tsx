@@ -1,6 +1,8 @@
+"use client"; // 1. Adicionado para permitir a função de clique
+
 import { WatermarkShapes } from "./watermark-shapes";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { Phone } from "lucide-react"; // 2. Importado o ícone de telefone
 
 export function InfrastructureSection() {
   return (
@@ -54,24 +56,38 @@ export function InfrastructureSection() {
               </div>
             </div>
 
+            {/* 3. Botão atualizado com a função onClick para abrir o WhatsApp */}
             <Button
               size="lg"
               className="bg-accent hover:bg-accent/90 text-white px-8 py-4 text-lg"
+              onClick={() => {
+                const whatsappNumber = "5581999999999"; // Seu número
+                const whatsappMessage =
+                  "Olá! Tenho interesse em garantir meu espaço e gostaria de mais informações sobre a infraestrutura.";
+                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                  whatsappMessage
+                )}`;
+                window.open(whatsappLink, "_blank");
+              }}
             >
-              Quero Garantir Meu Espaço
+              <Phone className="w-5 h-5 mr-2" />
+              Quero falar com especialista!
             </Button>
           </div>
 
-          {/* Espaço para a imagem */}
+          {/* Espaço para o vídeo */}
           <div className="relative">
             <div className="aspect-square bg-white/10 rounded-2xl overflow-hidden">
-              <Image
-                src="/estrutura.png"
-                alt="Mulher feliz segurando caixas de compras no Portal das Feiras 232"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-2xl"
-              />
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover rounded-2xl"
+              >
+                <source src="/video.mp4" type="video/mp4" />
+                Seu navegador não suporta o elemento de vídeo.
+              </video>
             </div>
           </div>
         </div>

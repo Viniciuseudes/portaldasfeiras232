@@ -5,29 +5,35 @@ import Image from "next/image";
 import {
   Dialog,
   DialogContent,
+  DialogFooter, // 1. Importado o DialogFooter
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { GoogleFormModal } from "@/components/GoogleFormModal"; // 2. Importado o modal do Google Form
+import { FileText } from "lucide-react"; // 3. Importado o ícone
 
 const gridItems = [
   {
-    id: "moda",
+    id: "empreendedorismo",
     content: (
-      <h2 className="text-8xl sm:text-5xl lg:text-2xl font-extrabold text-white tracking-wider">
-        EMPREENDERORISMO
+      <h2 className="text-1xl sm:text-8xl lg:text-xl font-extrabold text-white tracking-wider leading-tight text-center">
+        EMPREEN
+        <br className="sm:hidden" />
+        DEDO
+        <br className="sm:hidden" />
+        RISMO
       </h2>
     ),
-    className: "bg-brand-red",
-    gridArea: "1 / 1 / 2 / 4",
-    animationDelay: "0s",
+    className:
+      "bg-brand-red row-start-2 col-start-3 col-span-2 lg:row-start-1 lg:col-start-1 lg:col-span-3",
+    animationDelay: "2.4s",
   },
   {
     id: "green-square",
     content: null,
-    className: "bg-lime-300",
-    gridArea: "1 / 4 / 2 / 5",
+    className: "bg-lime-300 row-start-1 col-start-4 col-span-1",
     animationDelay: "0.8s",
   },
   {
@@ -40,20 +46,20 @@ const gridItems = [
         height={100}
       />
     ),
-    className: "bg-white border border-gray-100",
-    gridArea: "2 / 1 / 3 / 3",
+    className:
+      "bg-white border border-gray-100 row-start-2 col-start-1 col-span-2",
     animationDelay: "1.6s",
   },
   {
     id: "moda",
     content: (
-      <h3 className="text-4xl sm:text-4xl lg:text-7xl font-semibold text-white text-center leading-tight">
+      <h3 className="text-[10vw] sm:text-4xl lg:text-6xl font-semibold text-white text-center leading-tight">
         MODA
       </h3>
     ),
-    className: "bg-teal-400",
-    gridArea: "2 / 3 / 3 / 5",
-    animationDelay: "2.4s",
+    className:
+      "bg-teal-400 row-start-1 col-start-1 col-span-3 lg:row-start-2 lg:col-start-3 lg:col-span-2",
+    animationDelay: "0s",
   },
   {
     id: "inovacao",
@@ -62,8 +68,7 @@ const gridItems = [
         inovação
       </h2>
     ),
-    className: "bg-brand-blue",
-    gridArea: "3 / 1 / 9 / 6",
+    className: "bg-brand-blue row-start-3 col-start-1 col-span-5",
     animationDelay: "3.2s",
   },
   {
@@ -73,11 +78,11 @@ const gridItems = [
         src="/LOGOVERTICAL.png"
         alt="Portal das Feiras 232"
         layout="fill"
-        objectFit="contain" // Garante que a imagem caiba sem distorcer
+        objectFit="contain"
       />
     ),
-    className: "bg-white border-0 border-black relative overflow-hidden p-0", // Removido o padding para ocupar todo o espaço
-    gridArea: "1 / 5 / 3 / 6",
+    className:
+      "bg-white border-0 border-black relative overflow-hidden p-0 row-start-1 row-span-2 col-start-5 col-span-1",
     animationDelay: "4s",
   },
   {
@@ -90,8 +95,8 @@ const gridItems = [
         objectFit="cover"
       />
     ),
-    className: "relative p-0 overflow-hidden bg-gray-200",
-    gridArea: "1 / 6 / 9 / 9",
+    className:
+      "relative p-0 overflow-hidden bg-gray-200 row-start-1 row-span-3 col-start-6 col-span-3",
     animationDelay: "4.8s",
   },
 ];
@@ -117,11 +122,10 @@ export function HeroSection() {
                   <div
                     key={item.id}
                     className={cn(
-                      "flex items-center justify-center rounded-lg p-4 text-center", // Padding padrão para todos
-                      item.className // Classes específicas do item (que podem substituir o padding)
+                      "flex items-center justify-center rounded-lg p-4 text-center",
+                      item.className
                     )}
                     style={{
-                      gridArea: item.gridArea,
                       animation: `cycle-visibility 12s infinite`,
                       animationDelay: item.animationDelay,
                     }}
@@ -190,6 +194,19 @@ export function HeroSection() {
             Nordeste.
           </p>
         </div>
+
+        {/* 4. BOTÃO ADICIONADO AQUI DENTRO DO FOOTER DO POPUP */}
+        <DialogFooter>
+          <GoogleFormModal>
+            <Button
+              size="lg"
+              className="w-full bg-brand-red hover:bg-brand-red/90 text-white font-bold rounded-xl"
+            >
+              <FileText className="w-4 h-4 mr-2" />
+              Garanta já o seu espaço!
+            </Button>
+          </GoogleFormModal>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

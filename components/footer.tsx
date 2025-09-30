@@ -120,7 +120,16 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center">
           <p className="text-primary-foreground/60">
-            © 2025 Portal das Feiras 232. @EZZECOMUNICACAO.
+            © 2025 Portal das Feiras 232.{" "}
+            <a
+              href="https://www.instagram.com/ezze.comunicacao/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent hover:underline transition-colors"
+            >
+              @EZZECOMUNICACAO
+            </a>
+            .
           </p>
         </div>
       </div>

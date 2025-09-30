@@ -1,7 +1,7 @@
 "use client";
 
 export function FloatingWhatsappButton() {
-  const whatsappNumber = "5581999999999"; // Substitua pelo seu número
+  const whatsappNumber = "5581993831048"; // Substitua pelo seu número
   const whatsappMessage = "Olá! Vim pelo site e preciso de ajuda.";
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     whatsappMessage
@@ -15,7 +15,11 @@ export function FloatingWhatsappButton() {
       rel="noopener noreferrer"
       aria-label="Fale conosco pelo WhatsApp"
     >
-      <div className="whatsapp-text invisible -translate-x-2 transform whitespace-nowrap rounded-full bg-white py-2 px-4 text-sm font-semibold text-gray-800 opacity-0 shadow-md transition-all duration-300 ease-in-out group-hover:visible group-hover:-translate-x-0 group-hover:opacity-100">
+      {/* AJUSTE: Adicionada a classe 'hidden md:inline-block' 
+        Isso faz com que o texto só exista em telas médias (md) ou maiores.
+        A classe 'invisible' foi removida por não ser mais necessária.
+      */}
+      <div className="whatsapp-text hidden md:inline-block -translate-x-2 transform whitespace-nowrap rounded-full bg-white py-2 px-4 text-sm font-semibold text-gray-800 opacity-0 shadow-md transition-all duration-300 ease-in-out group-hover:visible group-hover:-translate-x-0 group-hover:opacity-100">
         Tirar Dúvidas!
       </div>
 
