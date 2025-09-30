@@ -27,7 +27,10 @@ export function LocationSection() {
               LOCALIZAÇÃO PRIVILEGIADA
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-8">
-              BR-232 ligando Recife ao sertão
+              Estamos perto de tudo!
+            </h2>
+            <h2 className="text-1xl lg:text-2xl font-bold text-white mb-8">
+              Br-232 ligando Recife ao Sertão
             </h2>
 
             {/* Interactive Map */}
@@ -45,21 +48,21 @@ export function LocationSection() {
             </div>
           </div>
 
-          {/* Distance Cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-4 gap-2 sm:gap-4 max-w-4xl mx-auto">
             {distances.map((distance, index) => (
               <Card
                 key={index}
-                className="p-6 text-center hover:shadow-lg transition-shadow bg-white"
+                // AJUSTE FINAL: Adicionado aspect-square e justify-center para o mobile
+                className="p-2 sm:p-4 text-center flex flex-col justify-center aspect-square sm:aspect-auto hover:shadow-lg transition-shadow bg-white"
               >
-                <div className="w-12 h-12 bg-brand-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <distance.icon className="w-6 h-6 text-brand-blue" />
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-brand-blue/10 rounded-full flex items-center justify-center mx-auto mb-1 sm:mb-2">
+                  <distance.icon className="w-4 h-4 sm:w-5 sm:h-5 text-brand-blue" />
                 </div>
-                <h3 className="text-lg font-semibold text-brand-blue mb-2">
+                <h3 className="text-sm sm:text-base font-semibold text-brand-blue mb-0.5 sm:mb-1 leading-tight">
                   {distance.city}
                 </h3>
-                <div className="flex items-center justify-center gap-2 text-gray-600">
-                  <Clock className="w-4 h-4" />
+                <div className="flex items-center justify-center gap-1 text-gray-600 text-xs sm:text-sm">
+                  <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>{distance.time}</span>
                 </div>
               </Card>
