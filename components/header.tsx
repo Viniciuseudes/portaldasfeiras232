@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation"; // 1. IMPORTAR O 'usePathname'
 import { Button } from "@/components/ui/button";
-import { Menu, X, FileText } from "lucide-react"; // 1. Mudei o ícone de 'Phone' para 'FileText'
+import { Menu, X, FileText } from "lucide-react";
 import { GoogleFormModal } from "./GoogleFormModal";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname(); // 2. CAPTURAR A ROTA ATUAL
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -26,26 +29,41 @@ export function Header() {
   };
 
   const navLinks = [
-    { label: "Início", sectionId: "inicio" },
-    { label: "Lançamento", sectionId: "lanc" },
-    { label: "Estrutura", sectionId: "estrutura" },
-    { label: "Polo Têxtil", sectionId: "polo-textil" },
-    { label: "Localização", sectionId: "localizacao" },
-    { label: "Benefícios", sectionId: "beneficios" },
-    { label: "Contato", sectionId: "contato" },
+    { label: "Início", sectionId: "inicio", href: "/#inicio" },
+    { label: "Lançamento", sectionId: "lanc", href: "/#lanc" },
+    { label: "Estrutura", sectionId: "estrutura", href: "/#estrutura" },
+    { label: "Polo Têxtil", sectionId: "polo-textil", href: "/#polo-textil" },
+    { label: "Localização", sectionId: "localizacao", href: "/#localizacao" },
+    { label: "Benefícios", sectionId: "beneficios", href: "/#beneficios" },
+    { label: "Blog", href: "/blog" },
+    { label: "Contato", sectionId: "contato", href: "/#contato" },
   ];
+
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+    sectionId?: string
+  ) => {
+    // 3. LÓGICA ATUALIZADA
+    // Se for um link de seção E estivermos na página inicial, faz a rolagem suave
+    if (sectionId && pathname === "/") {
+      e.preventDefault();
+      scrollToSection(sectionId);
+    }
+    // Se for o menu mobile, sempre fecha ao clicar
+    setIsMenuOpen(false);
+    // Para todos os outros casos (ex: clicar em "Estrutura" estando no "/blog"),
+    // o comportamento padrão do Link (href="/#estrutura") vai funcionar.
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex-shrink-0">
-            <a
-              href="#inicio"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("inicio");
-              }}
+            <Link
+              href="/"
+              onClick={(e) => handleLinkClick(e, "/", "inicio")}
               className="cursor-pointer"
             >
               <Image
@@ -55,24 +73,24 @@ export function Header() {
                 height={45}
                 priority
               />
-            </a>
+            </Link>
           </div>
 
           <nav className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <button
-                key={link.sectionId}
-                onClick={() => scrollToSection(link.sectionId)}
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleLinkClick(e, link.href, link.sectionId)}
                 className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </nav>
 
           <div className="hidden lg:flex items-center space-x-4">
             <GoogleFormModal>
-              {/* 2. Cor do botão e ícone atualizados */}
               <Button
                 size="lg"
                 className="bg-brand-red hover:bg-brand-red/90 text-white font-bold rounded-xl"
@@ -100,16 +118,16 @@ export function Header() {
           <div className="lg:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-4">
               {navLinks.map((link) => (
-                <button
-                  key={link.sectionId}
-                  onClick={() => scrollToSection(link.sectionId)}
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href, link.sectionId)}
                   className="text-left text-gray-700 hover:text-brand-blue transition-colors font-medium py-2"
                 >
                   {link.label}
-                </button>
+                </Link>
               ))}
               <GoogleFormModal>
-                {/* 3. Cor e ícone atualizados também no botão mobile */}
                 <Button
                   size="lg"
                   className="bg-brand-red hover:bg-brand-red/90 text-white font-bold mt-4 rounded-xl w-full"
