@@ -61,7 +61,7 @@ export function InfrastructureSection() {
               size="lg"
               className="bg-accent hover:bg-accent/90 text-white px-8 py-4 text-lg"
               onClick={() => {
-                const whatsappNumber = "5581999999999"; // Seu número
+                const whatsappNumber = "5581993831048"; // Seu número
                 const whatsappMessage =
                   "Olá! Tenho interesse em garantir meu espaço e gostaria de mais informações sobre a infraestrutura.";
                 const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(

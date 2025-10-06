@@ -27,7 +27,7 @@ export function CTASection() {
                   Início das atividades!
                 </div>
                 <h2 className="text-5xl lg:text-6xl font-bold text-brand-blue">
-                  ABRIL
+                  tttt
                   <br />
                   2026
                 </h2>

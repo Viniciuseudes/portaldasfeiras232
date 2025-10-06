@@ -3,14 +3,38 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // 1. IMPORTAR O 'usePathname'
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X, FileText } from "lucide-react";
 import { GoogleFormModal } from "./GoogleFormModal";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname(); // 2. CAPTURAR A ROTA ATUAL
+  const pathname = usePathname();
+
+  // NOVA FUNÇÃO PARA CONTROLE PRECISO DA ROLAGEM
+  const smoothScrollTo = (targetPosition: number, duration: number) => {
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime: number | null = null;
+
+    const easeInOutQuad = (t: number, b: number, c: number, d: number) => {
+      t /= d / 2;
+      if (t < 1) return (c / 2) * t * t + b;
+      t--;
+      return (-c / 2) * (t * (t - 2) - 1) + b;
+    };
+
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    };
+
+    requestAnimationFrame(animation);
+  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -20,10 +44,8 @@ export function Header() {
       const offsetPosition =
         elementPosition + window.pageYOffset - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+      smoothScrollTo(offsetPosition, 600);
+
       setIsMenuOpen(false);
     }
   };
@@ -44,16 +66,11 @@ export function Header() {
     href: string,
     sectionId?: string
   ) => {
-    // 3. LÓGICA ATUALIZADA
-    // Se for um link de seção E estivermos na página inicial, faz a rolagem suave
     if (sectionId && pathname === "/") {
       e.preventDefault();
       scrollToSection(sectionId);
     }
-    // Se for o menu mobile, sempre fecha ao clicar
     setIsMenuOpen(false);
-    // Para todos os outros casos (ex: clicar em "Estrutura" estando no "/blog"),
-    // o comportamento padrão do Link (href="/#estrutura") vai funcionar.
   };
 
   return (

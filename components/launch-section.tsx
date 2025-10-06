@@ -33,12 +33,12 @@ export function LaunchSection() {
           {/* Conteúdo de texto */}
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <div className="inline-block bg-secondary text-secondary-foreground px-8 py-3 rounded-lg text-4xl font-bold mb-6">
-              Lançamento!
+              Início das atividades!!
             </div>
 
             <div className="flex flex-col w-full items-center lg:items-start">
               <h2 className="text-6xl lg:text-8xl font-bold text-primary leading-none font-[family-name:var(--font-poppins)]">
-                MARÇO
+                ABRIL DE
               </h2>
               <h2 className="text-6xl lg:text-8xl font-bold text-primary leading-none font-[family-name:var(--font-poppins)]">
                 2026
