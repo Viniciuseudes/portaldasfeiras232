@@ -24,10 +24,10 @@ export function CTASection() {
             <div className="space-y-8">
               <div className="space-y-6">
                 <div className="inline-block bg-brand-red text-white px-8 py-4 rounded-2xl font-bold text-2xl">
-                  Lançamento!
+                  Início das atividades!
                 </div>
                 <h2 className="text-5xl lg:text-6xl font-bold text-brand-blue">
-                  MARÇO
+                  ABRIL
                   <br />
                   2026
                 </h2>
@@ -42,7 +42,7 @@ export function CTASection() {
                   className="bg-brand-red hover:bg-brand-red/90 text-white font-bold text-lg px-8 py-4 h-auto rounded-xl"
                   onClick={() =>
                     window.open(
-                      "https://wa.me/5581999999999?text=Olá! Quero garantir meu espaço no Portal das Feiras 232",
+                      "https://wa.me/5581993831048?text=Olá! Quero garantir meu espaço no Portal das Feiras 232",
                       "_blank"
                     )
                   }
