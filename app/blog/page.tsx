@@ -41,10 +41,10 @@ export default function BlogPage() {
               <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <div className="relative aspect-[16/9] rounded-lg overflow-hidden shadow-lg">
                   <Image
-                    src="/images/hero-section.jpg"
+                    src={featuredPost.imageUrl} // <-- CÓDIGO ALTERADO AQUI
                     alt={featuredPost.title}
                     layout="fill"
-                    objectFit="cover"
+                    objectFit="contain"
                     className="group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -82,10 +82,10 @@ export default function BlogPage() {
                   {/* Coluna da Imagem */}
                   <div className="relative aspect-[16/9] rounded-lg overflow-hidden shadow-md">
                     <Image
-                      src="/images/location-section.jpg"
+                      src={post.imageUrl} // <-- CÓDIGO ALTERADO AQUI
                       alt={post.title}
                       layout="fill"
-                      objectFit="cover"
+                      objectFit="contain"
                       className="group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>

@@ -4,6 +4,7 @@ export interface Post {
   summary: string;
   content: string;
   date: string;
+  imageUrl: string; // 1. CAMPO ADICIONADO AQUI
 }
 
 export const posts: Post[] = [
@@ -12,6 +13,8 @@ export const posts: Post[] = [
     title: '5 vantagens de investir no polo têxtil do Agreste (São Caetano - PE)',
     summary: 'O polo têxtil do Agreste é uma das maiores engrenagens econômicas do Brasil. Descubra 5 grandes vantagens para entender o tamanho da oportunidade de investir na região com o Portal das Feiras 232.',
     date: '3 de Outubro de 2025',
+    // 2. ADICIONE O CAMINHO DA IMAGEM PARA CADA POST
+    imageUrl: '/1.png', 
     content: `
       <p>O polo têxtil do Agreste é uma das maiores engrenagens econômicas do Brasil. Caruaru, Toritama e Santa Cruz já provaram que a força da confecção nordestina não é apenas regional, mas nacional. Agora, São Caetano entra em cena com o Portal das Feiras 232, um espaço que promete profissionalizar ainda mais a moda do Agreste e atrair lojistas de todo o país.</p>
       <h3 class="text-2xl font-bold my-4">1. Mercado que não para de crescer</h3>
@@ -32,6 +35,7 @@ export const posts: Post[] = [
     title: 'São Caetano - PE: a nova capital da moda',
     summary: 'Enquanto Caruaru, Toritama e Santa Cruz dominaram o mapa, uma nova estrela surge: São Caetano - PE, que ganha projeção nacional com o Portal das Feiras 232.',
     date: '1 de Outubro de 2025',
+    imageUrl: '/2.png', // <--- Imagem diferente
     content: `
       <p>Por muito tempo, Caruaru, Toritama e Santa Cruz dominaram o mapa da confecção no Nordeste. Mas agora, uma nova estrela surge: São Caetano - PE, que começa a ganhar projeção nacional com o Portal das Feiras 232.</p>
       <p>O município se transforma em protagonista de um novo capítulo do polo têxtil, reunindo tradição e inovação em um só lugar.</p>
@@ -51,6 +55,7 @@ export const posts: Post[] = [
     title: 'Guia completo para lojistas no Portal das Feiras 232',
     summary: 'Se você é lojista e busca expandir seus negócios, precisa conhecer o Portal das Feiras 232. Este espaço une o melhor do polo têxtil com uma infraestrutura pensada para o futuro.',
     date: '28 de Setembro de 2025',
+    imageUrl: '/3.png', // <--- Imagem diferente
     content: `
       <p>Se você é lojista e busca expandir seus negócios, precisa conhecer o Portal das Feiras 232, em São Caetano - PE. Este espaço nasce com o propósito de unir o que o polo têxtil do Agreste já tem de melhor com uma infraestrutura pensada para o futuro da moda.</p>
       <h3 class="text-2xl font-bold my-4">Localização Estratégica</h3>
@@ -69,6 +74,7 @@ export const posts: Post[] = [
     title: 'Prefeitura de São Caetano faz parceria e desenvolve o primeiro polo têxtil da cidade',
     summary: 'O município de São Caetano vive um momento histórico. Com apoio da prefeitura, foi lançado o Portal das Feiras 232, o primeiro grande polo têxtil da cidade.',
     date: '25 de Setembro de 2025',
+    imageUrl: '/4.png', // <--- Imagem diferente
     content: `
       <p>O município de São Caetano vive um momento histórico. Com apoio da prefeitura, foi lançado o Portal das Feiras 232, o primeiro grande polo têxtil da cidade, que promete mudar a realidade econômica e social da região.</p>
       <h3 class="text-2xl font-bold my-4">Um Marco de Desenvolvimento</h3>

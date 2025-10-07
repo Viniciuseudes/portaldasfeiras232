@@ -65,10 +65,10 @@ export default function PostPage({ params }: PostPageProps) {
 
           <div className="relative aspect-[16/9] rounded-lg overflow-hidden my-8 shadow-lg">
             <Image
-              src="/images/camisa.png"
+              src={post.imageUrl} // <-- CÓDIGO ALTERADO AQUI
               alt={post.title}
               layout="fill"
-              objectFit="cover"
+              objectFit="contain"
               priority
             />
           </div>

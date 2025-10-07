@@ -5,14 +5,14 @@ import Image from "next/image";
 import {
   Dialog,
   DialogContent,
-  DialogFooter, // 1. Importado o DialogFooter
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { GoogleFormModal } from "@/components/GoogleFormModal"; // 2. Importado o modal do Google Form
-import { FileText } from "lucide-react"; // 3. Importado o ícone
+import { GoogleFormModal } from "@/components/GoogleFormModal";
+import { FileText } from "lucide-react";
 
 const gridItems = [
   {
@@ -77,8 +77,8 @@ const gridItems = [
       <Image
         src="/LOGOVERTICAL.png"
         alt="Portal das Feiras 232"
-        layout="fill"
-        objectFit="contain"
+        fill // <-- ALTERADO DE 'layout="fill"'
+        className="object-contain" // <-- ADICIONADO para substituir 'objectFit'
       />
     ),
     className:
@@ -91,8 +91,8 @@ const gridItems = [
       <Image
         src="/mulher.png"
         alt="mulher232"
-        layout="fill"
-        objectFit="cover"
+        fill // <-- ALTERADO DE 'layout="fill"'
+        className="object-cover" // <-- ADICIONADO para substituir 'objectFit'
       />
     ),
     className:
@@ -195,7 +195,6 @@ export function HeroSection() {
           </p>
         </div>
 
-        {/* 4. BOTÃO ADICIONADO AQUI DENTRO DO FOOTER DO POPUP */}
         <DialogFooter>
           <GoogleFormModal>
             <Button
