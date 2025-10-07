@@ -38,10 +38,10 @@ export function LaunchSection() {
 
             <div className="flex flex-col w-full items-center lg:items-start">
               <h2 className="text-6xl lg:text-8xl font-bold text-primary leading-none font-[family-name:var(--font-poppins)]">
-                EM
+                ABRIL DE
               </h2>
               <h2 className="text-6xl lg:text-8xl font-bold text-primary leading-none font-[family-name:var(--font-poppins)]">
-                BREVE!!
+                2026
               </h2>
             </div>
 
