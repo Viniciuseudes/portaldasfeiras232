@@ -1,12 +1,60 @@
-"use client"; // 1. Adicionado para permitir a função de clique
+"use client";
 
+import { useEffect, useRef } from "react";
 import { WatermarkShapes } from "./watermark-shapes";
 import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react"; // 2. Importado o ícone de telefone
+import { Phone } from "lucide-react";
 
 export function InfrastructureSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Observa a secção inteira
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+
+        // Quando 30% da secção entrar no ecrã
+        if (entry.isIntersecting && videoRef.current) {
+          // Tenta iniciar o vídeo (com áudio)
+          videoRef.current.play().catch((error) => {
+            console.warn(
+              "O navegador bloqueou o autoplay com áudio. A iniciar sem som.",
+              error,
+            );
+            // Fallback: Se o navegador bloquear o áudio, reproduz o vídeo sem som
+            if (videoRef.current) {
+              videoRef.current.muted = true;
+              videoRef.current
+                .play()
+                .catch((e) =>
+                  console.error("Erro ao reproduzir vídeo sem som:", e),
+                );
+            }
+          });
+        } else if (!entry.isIntersecting && videoRef.current) {
+          // Pausa o vídeo quando o utilizador sair da secção
+          videoRef.current.pause();
+        }
+      },
+      { threshold: 0.3 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="estrutura"
       className="relative bg-primary py-20 lg:py-32 overflow-hidden"
     >
@@ -14,7 +62,7 @@ export function InfrastructureSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Conteúdo */}
+          {/* Conteúdo da Esquerda */}
           <div className="text-white">
             <h2 className="text-4xl lg:text-5xl mb-2 text-balance">
               Infraestrutura moderna,
@@ -56,16 +104,15 @@ export function InfrastructureSection() {
               </div>
             </div>
 
-            {/* 3. Botão atualizado com a função onClick para abrir o WhatsApp */}
             <Button
               size="lg"
               className="bg-accent hover:bg-accent/90 text-white px-8 py-4 text-lg"
               onClick={() => {
-                const whatsappNumber = "5581993831048"; // Seu número
+                const whatsappNumber = "5581993831048";
                 const whatsappMessage =
                   "Olá! Tenho interesse em garantir meu espaço e gostaria de mais informações sobre a infraestrutura.";
                 const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                  whatsappMessage
+                  whatsappMessage,
                 )}`;
                 window.open(whatsappLink, "_blank");
               }}
@@ -75,18 +122,19 @@ export function InfrastructureSection() {
             </Button>
           </div>
 
-          {/* Espaço para o vídeo */}
-          <div className="relative">
-            <div className="aspect-square bg-white/10 rounded-2xl overflow-hidden">
+          {/* Espaço para o vídeo Horizontal (16:9) */}
+          <div className="relative w-full shadow-2xl rounded-2xl transition-transform hover:scale-[1.02] duration-500">
+            <div className="aspect-video bg-white/5 rounded-2xl overflow-hidden border border-white/10 relative group">
               <video
-                autoPlay
+                ref={videoRef}
                 loop
-                muted
                 playsInline
-                className="w-full h-full object-cover rounded-2xl"
+                controls
+                preload="metadata"
+                className="w-full h-full object-cover"
               >
-                <source src="/video.mp4" type="video/mp4" />
-                Seu navegador não suporta o elemento de vídeo.
+                <source src="/potal.mp4" type="video/mp4" />O seu navegador não
+                suporta o elemento de vídeo.
               </video>
             </div>
           </div>
