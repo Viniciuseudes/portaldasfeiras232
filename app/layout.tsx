@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
+import Script from "next/script"; // <-- 1. Import do componente Script do Next.js
 import "./globals.css";
 import { FloatingWhatsappButton } from "@/components/floating-whatsapp-button";
 
@@ -35,7 +36,6 @@ export const metadata: Metadata = {
   robots: "index, follow",
   generator: "Portal das Feiras 232",
 
-  // ------------ ADICIONADO AQUI ------------
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -45,7 +45,6 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
-  // -----------------------------------------
 };
 
 export default function RootLayout({
@@ -58,6 +57,31 @@ export default function RootLayout({
       <body
         className={`font-sans ${inter.variable} ${poppins.variable} antialiased`}
       >
+        {/* 2. Google Tag Manager (noscript) - O mais alto possível no body */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MQ97GRGQ"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+
+        {/* 3. Google Tag Manager (Script) - Carregamento otimizado */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-MQ97GRGQ');
+            `,
+          }}
+        />
+
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
         <FloatingWhatsappButton />
