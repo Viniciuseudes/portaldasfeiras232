@@ -5,8 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X, FileText } from "lucide-react";
-import { GoogleFormModal } from "./GoogleFormModal";
+import { Menu, X, ArrowRight } from "lucide-react";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,6 +72,9 @@ export function Header() {
     setIsMenuOpen(false);
   };
 
+  // URL do WhatsApp formatada com uma mensagem opcional (você pode remover o texto se quiser)
+  const whatsappUrl = "https://wa.me/5581993831048?text=Olá!%20Gostaria%20de%20garantir%20meu%20espaço.";
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,15 +109,19 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center space-x-4">
-            <GoogleFormModal>
+            <a 
+              href={whatsappUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
               <Button
                 size="lg"
                 className="bg-brand-red hover:bg-brand-red/90 text-white font-bold rounded-xl"
               >
-                <FileText className="w-4 h-4 mr-2" />
                 Garanta seu Espaço
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-            </GoogleFormModal>
+            </a>
           </div>
 
           <button
@@ -144,15 +150,20 @@ export function Header() {
                   {link.label}
                 </Link>
               ))}
-              <GoogleFormModal>
+              <a 
+                href={whatsappUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-full"
+              >
                 <Button
                   size="lg"
                   className="bg-brand-red hover:bg-brand-red/90 text-white font-bold mt-4 rounded-xl w-full"
                 >
-                  <FileText className="w-4 h-4 mr-2" />
                   Garanta seu Espaço
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
-              </GoogleFormModal>
+              </a>
             </nav>
           </div>
         )}

@@ -2,7 +2,7 @@
 
 export function FloatingWhatsappButton() {
   const whatsappNumber = "5581993831048"; // Substitua pelo seu número
-  const whatsappMessage = "Olá! Vim pelo site e preciso de ajuda.";
+  const whatsappMessage = "Olá! Gostaria de tirar algumas dúvidas.";
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     whatsappMessage
   )}`;

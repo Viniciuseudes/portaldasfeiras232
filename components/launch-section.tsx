@@ -38,7 +38,7 @@ export function LaunchSection() {
 
             <div className="flex flex-col w-full items-center lg:items-start">
               <h2 className="text-6xl lg:text-8xl font-bold text-primary leading-none font-[family-name:var(--font-poppins)]">
-                ABRIL DE
+                OUTUBRO DE
               </h2>
               <h2 className="text-6xl lg:text-8xl font-bold text-primary leading-none font-[family-name:var(--font-poppins)]">
                 2026
