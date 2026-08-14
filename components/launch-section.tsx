@@ -3,12 +3,11 @@
 import { WatermarkShapes } from "./watermark-shapes";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { GoogleFormModal } from "./GoogleFormModal"; // 1. Importado o componente do Modal
-import { FileText } from "lucide-react"; // 2. Importado o ícone para consistência
+import { ArrowRight } from "lucide-react";
 
 export function LaunchSection() {
-  // A função de scroll foi removida, pois não é mais necessária aqui
-  // const scrollToContact = () => { ... };
+  // URL do WhatsApp formatada com a mesma mensagem
+  const whatsappUrl = "https://wa.me/5581993831048?text=Olá!%20Gostaria%20de%20garantir%20meu%20espaço.";
 
   return (
     <section
@@ -49,17 +48,21 @@ export function LaunchSection() {
               Garanta já seu espaço!
             </p>
 
-            {/* 3. Botão agora está envolvido pelo GoogleFormModal */}
-            <GoogleFormModal>
+            {/* Botão com link para o WhatsApp */}
+            <a 
+              href={whatsappUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mt-8"
+            >
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-4 mt-8 h-auto rounded-lg transition-transform transform hover:scale-105"
-                // O onClick foi removido daqui
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg px-8 py-4 h-auto rounded-lg transition-transform transform hover:scale-105"
               >
-                <FileText className="w-5 h-5 mr-2" />
-                PREENCHER FORMULÁRIO
+                GARANTA SEU ESPAÇO
+                <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
-            </GoogleFormModal>
+            </a>
           </div>
         </div>
       </div>

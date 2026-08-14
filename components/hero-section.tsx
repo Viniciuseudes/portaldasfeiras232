@@ -11,8 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { GoogleFormModal } from "@/components/GoogleFormModal";
-import { FileText } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const gridItems = [
   {
@@ -77,8 +76,8 @@ const gridItems = [
       <Image
         src="/LOGOVERTICAL.png"
         alt="Portal das Feiras 232"
-        fill // <-- ALTERADO DE 'layout="fill"'
-        className="object-contain" // <-- ADICIONADO para substituir 'objectFit'
+        fill
+        className="object-contain"
       />
     ),
     className:
@@ -91,8 +90,8 @@ const gridItems = [
       <Image
         src="/mulher.png"
         alt="mulher232"
-        fill // <-- ALTERADO DE 'layout="fill"'
-        className="object-cover" // <-- ADICIONADO para substituir 'objectFit'
+        fill
+        className="object-cover"
       />
     ),
     className:
@@ -102,6 +101,9 @@ const gridItems = [
 ];
 
 export function HeroSection() {
+  // URL do WhatsApp padronizada
+  const whatsappUrl = "https://wa.me/5581993831048?text=Olá!%20Gostaria%20de%20garantir%20meu%20espaço.";
+
   return (
     <Dialog>
       <section
@@ -196,15 +198,20 @@ export function HeroSection() {
         </div>
 
         <DialogFooter>
-          <GoogleFormModal>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full"
+          >
             <Button
               size="lg"
               className="w-full bg-brand-red hover:bg-brand-red/90 text-white font-bold rounded-xl"
             >
-              <FileText className="w-4 h-4 mr-2" />
               Garanta já o seu espaço!
+              <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-          </GoogleFormModal>
+          </a>
         </DialogFooter>
       </DialogContent>
     </Dialog>
