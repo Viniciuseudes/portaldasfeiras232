@@ -122,20 +122,23 @@ export function InfrastructureSection() {
             </Button>
           </div>
 
-          {/* Espaço para o vídeo Horizontal (16:9) */}
-          <div className="relative w-full shadow-2xl rounded-2xl transition-transform hover:scale-[1.02] duration-500">
-            <div className="aspect-video bg-white/5 rounded-2xl overflow-hidden border border-white/10 relative group">
-              <video
-                ref={videoRef}
-                loop
-                playsInline
-                controls
-                preload="metadata"
-                className="w-full h-full object-cover"
-              >
-                <source src="/potal.mp4" type="video/mp4" />O seu navegador não
-                suporta o elemento de vídeo.
-              </video>
+          {/* Espaço para o vídeo Vertical (9:16) */}
+          <div className="flex justify-center lg:justify-end w-full">
+            {/* O max-w-[360px] impede que o vídeo estoure a altura da tela no desktop */}
+            <div className="relative w-full max-w-[360px] shadow-2xl rounded-2xl transition-transform hover:scale-[1.02] duration-500">
+              <div className="aspect-[9/16] bg-white/5 rounded-2xl overflow-hidden border border-white/10 relative group">
+                <video
+                  ref={videoRef}
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/trafegologistas.mp4" type="video/mp4" />O seu
+                  navegador não suporta o elemento de vídeo.
+                </video>
+              </div>
             </div>
           </div>
         </div>
