@@ -135,7 +135,7 @@ export function InfrastructureSection() {
                   preload="metadata"
                   className="w-full h-full object-cover"
                 >
-                  <source src="/trafegologistas.mp4" type="video/mp4" />O seu
+                  <source src="/trafegolojistas.mp4" type="video/mp4" />O seu
                   navegador não suporta o elemento de vídeo.
                 </video>
               </div>
