@@ -18,8 +18,8 @@ export function LaunchSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-          {/* Imagem da campanha */}
-          <div className="relative">
+          {/* Imagem da campanha e Identificação do Influenciador */}
+          <div className="relative flex flex-col items-center">
             <Image
               src="/indicathalyson.png"
               alt="Lançamentoo2 do Portal das Feiras 232 em Março de 2026"
@@ -27,6 +27,19 @@ export function LaunchSection() {
               height={600}
               className="rounded-2xl mx-auto"
             />
+            
+            {/* Nome e Instagram do influenciador */}
+            <div className="mt-4 text-center text-lg">
+              <span className="font-bold text-gray-800">Thalyson Girão · </span>
+              <a
+                href="https://www.instagram.com/thalysongirao/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-primary hover:underline hover:opacity-80 transition-opacity"
+              >
+                @thalysongirao
+              </a>
+            </div>
           </div>
 
           {/* Conteúdo de texto */}
