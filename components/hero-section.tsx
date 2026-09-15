@@ -1,219 +1,150 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { WatermarkShapes } from "./watermark-shapes";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { Phone } from "lucide-react";
 
-const gridItems = [
-  {
-    id: "empreendedorismo",
-    content: (
-      <h2 className="text-1xl sm:text-8xl lg:text-xl font-extrabold text-white tracking-wider leading-tight text-center">
-        EMPREEN
-        <br className="sm:hidden" />
-        DEDO
-        <br className="sm:hidden" />
-        RISMO
-      </h2>
-    ),
-    className:
-      "bg-brand-red row-start-2 col-start-3 col-span-2 lg:row-start-1 lg:col-start-1 lg:col-span-3",
-    animationDelay: "2.4s",
-  },
-  {
-    id: "green-square",
-    content: null,
-    className: "bg-lime-300 row-start-1 col-start-4 col-span-1",
-    animationDelay: "0.8s",
-  },
-  {
-    id: "logo",
-    content: (
-      <Image
-        src="/logo2.png"
-        alt="Logo Portal das Feiras 232"
-        width={300}
-        height={100}
-      />
-    ),
-    className:
-      "bg-white border border-gray-100 row-start-2 col-start-1 col-span-2",
-    animationDelay: "1.6s",
-  },
-  {
-    id: "moda",
-    content: (
-      <h3 className="text-[10vw] sm:text-4xl lg:text-6xl font-semibold text-white text-center leading-tight">
-        MODA
-      </h3>
-    ),
-    className:
-      "bg-teal-400 row-start-1 col-start-1 col-span-3 lg:row-start-2 lg:col-start-3 lg:col-span-2",
-    animationDelay: "0s",
-  },
-  {
-    id: "inovacao",
-    content: (
-      <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-wide">
-        inovação
-      </h2>
-    ),
-    className: "bg-brand-blue row-start-3 col-start-1 col-span-5",
-    animationDelay: "3.2s",
-  },
-  {
-    id: "do-do-do",
-    content: (
-      <Image
-        src="/LOGOVERTICAL.png"
-        alt="Portal das Feiras 232"
-        fill
-        className="object-contain"
-      />
-    ),
-    className:
-      "bg-white border-0 border-black relative overflow-hidden p-0 row-start-1 row-span-2 col-start-5 col-span-1",
-    animationDelay: "4s",
-  },
-  {
-    id: "tall-image",
-    content: (
-      <Image
-        src="/thalyson.jpeg"
-        alt="Thalyson"
-        fill
-        className="object-cover"
-      />
-    ),
-    className:
-      "relative p-0 overflow-hidden bg-gray-200 row-start-1 row-span-3 col-start-6 col-span-3",
-    animationDelay: "4.8s",
-  },
-];
+export function InfrastructureSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-export function HeroSection() {
-  // URL do WhatsApp padronizada
-  const whatsappUrl = "https://wa.me/5581993831048?text=Olá!%20Gostaria%20de%20garantir%20meu%20espaço.";
+  useEffect(() => {
+    // Observa a secção inteira
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+
+        // Quando 30% da secção entrar no ecrã
+        if (entry.isIntersecting && videoRef.current) {
+          // Tenta iniciar o vídeo (com áudio)
+          videoRef.current.play().catch((error) => {
+            console.warn(
+              "O navegador bloqueou o autoplay com áudio. A iniciar sem som.",
+              error,
+            );
+            // Fallback: Se o navegador bloquear o áudio, reproduz o vídeo sem som
+            if (videoRef.current) {
+              videoRef.current.muted = true;
+              videoRef.current
+                .play()
+                .catch((e) =>
+                  console.error("Erro ao reproduzir vídeo sem som:", e),
+                );
+            }
+          });
+        } else if (!entry.isIntersecting && videoRef.current) {
+          // Pausa o vídeo quando o utilizador sair da secção
+          videoRef.current.pause();
+        }
+      },
+      { threshold: 0.3 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  const whatsappNumber = "5581993831048";
+  const whatsappMessage = "Olá! Tenho interesse em garantir meu espaço e gostaria de mais informações sobre a infraestrutura.";
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
-    <Dialog>
-      <section
-        id="inicio"
-        className="relative w-full min-h-screen bg-white flex items-center"
-      >
-        <div className="container mx-auto flex flex-col lg:grid lg:grid-cols-5 gap-x-8 items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 py-16 lg:py-0">
-          <div className="flex items-center justify-center w-full lg:justify-start order-1 lg:order-2 lg:col-span-3">
-            <div className="relative w-full aspect-[1.5/1]">
+    <section
+      ref={sectionRef}
+      id="estrutura"
+      className="relative bg-primary py-20 lg:py-32 overflow-hidden"
+    >
+      <WatermarkShapes />
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Conteúdo da Esquerda */}
+          <div className="text-white">
+            <h2 className="text-4xl lg:text-5xl mb-2 text-balance">
+              Infraestrutura moderna,
+              <br />
+              planejada para o mercado
+            </h2>
+
+            <h3
+              className="text-5xl lg:text-6xl font-bold mb-12 text-white"
+              style={{ textShadow: "2px 2px 6px rgba(0,0,0,0.5)" }}
+            >
+              Esteja entre os pioneiros!
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
               <div
-                className="grid h-full w-full gap-2"
-                style={{
-                  gridTemplateColumns: "repeat(8, 1fr)",
-                  gridTemplateRows: "repeat(3, 1fr)",
-                }}
+                className="bg-primary text-primary-foreground px-6 py-4 rounded-2xl text-4xl"
+                style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.4)" }}
               >
-                {gridItems.map((item) => (
-                  <div
-                    key={item.id}
-                    className={cn(
-                      "flex items-center justify-center rounded-lg p-4 text-center",
-                      item.className
-                    )}
-                    style={{
-                      animation: `cycle-visibility 12s infinite`,
-                      animationDelay: item.animationDelay,
-                    }}
-                  >
-                    {item.content}
-                  </div>
-                ))}
+                + de 500 boxes
+              </div>
+              <div
+                className="bg-secondary text-secondary-foreground px-6 py-4 rounded-2xl text-3xl"
+                style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.4)" }}
+              >
+                + de 40 lojas
+              </div>
+              <div
+                className="bg-muted text-primary px-6 py-4 rounded-2xl text-3xl sm:col-span-2"
+                style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.4)" }}
+              >
+                + praça de alimentação completa
+              </div>
+              <div
+                className="bg-accent text-white px-6 py-4 rounded-2xl text-3xl sm:col-span-2"
+                style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.4)" }}
+              >
+                + estacionamento amplo <br /> e estrutura de apoio
+              </div>
+            </div>
+
+            <Button
+              size="lg"
+              className="bg-accent hover:bg-accent/90 text-white px-8 py-4 text-lg"
+              asChild
+            >
+              <a 
+                href={whatsappLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Phone className="w-5 h-5 mr-2" />
+                Quero saber mais e sair na frente
+              </a>
+            </Button>
+          </div>
+
+          {/* Espaço para o vídeo Vertical (9:16) */}
+          <div className="flex justify-center lg:justify-end w-full">
+            {/* O max-w-[360px] impede que o vídeo estoure a altura da tela no desktop */}
+            <div className="relative w-full max-w-[360px] shadow-2xl rounded-2xl transition-transform hover:scale-[1.02] duration-500">
+              <div className="aspect-[9/16] bg-white/5 rounded-2xl overflow-hidden border border-white/10 relative group">
+                <video
+                  ref={videoRef}
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/trafegologistas.mp4" type="video/mp4" />
+                  O seu navegador não suporta o elemento de vídeo.
+                </video>
               </div>
             </div>
           </div>
-
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left z-10 order-2 lg:order-1 lg:col-span-2 mt-12 lg:mt-0">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight mb-4">
-              O Futuro do Comércio de Moda do Nordeste Começa Aqui.
-            </h1>
-            <p className="text-lg md:text-xl max-w-xl text-muted-foreground mb-8">
-              Conheça o Portal das Feiras 232: a infraestrutura completa e as
-              conexões estratégicas que o seu negócio precisa para decolar em
-              São Caetano.
-            </p>
-            <DialogTrigger asChild>
-              <Button
-                size="lg"
-                className="bg-amber-500 hover:bg-amber-600 text-blue-950 font-bold text-lg px-8 py-4 h-auto rounded-lg transition-transform transform hover:scale-105"
-              >
-                QUERO SABER MAIS E SAIR NA FRENTE
-              </Button>
-            </DialogTrigger>
-          </div>
         </div>
-      </section>
-
-      <DialogContent className="sm:max-w-[625px]">
-        <DialogHeader>
-          <DialogTitle className="text-2xl text-primary font-bold">
-            Portal das Feiras 232
-          </DialogTitle>
-        </DialogHeader>
-        <div className="grid gap-4 py-4 text-muted-foreground">
-          <p>
-            Um projeto inovador que vai muito além da construção física — é a
-            criação de um{" "}
-            <strong className="text-primary">
-              novo polo de desenvolvimento
-            </strong>
-            , pensado para impulsionar o comércio, gerar conexões estratégicas e
-            fortalecer toda a cadeia do setor têxtil e de confecções.
-          </p>
-          <p>
-            Com uma infraestrutura completa, o empreendimento foi idealizado
-            para oferecer{" "}
-            <strong className="text-primary">
-              conforto, acessibilidade e modernidade
-            </strong>{" "}
-            tanto para quem vende quanto para quem compra.
-          </p>
-          <p>
-            Mais do que um espaço de negócios, o Portal das Feiras 232 será um{" "}
-            <strong className="text-primary">ambiente de oportunidades</strong>,
-            capaz de movimentar a economia local, atrair investimentos e
-            consolidar São Caetano como referência no cenário da moda regional.
-          </p>
-          <p className="font-semibold text-primary">
-            Aqui, tradição e inovação se encontram para transformar a forma de
-            fazer negócios e abrir caminho para um novo tempo no comércio do
-            Nordeste.
-          </p>
-        </div>
-
-        <DialogFooter>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full"
-          >
-            <Button
-              size="lg"
-              className="w-full bg-brand-red hover:bg-brand-red/90 text-white font-bold rounded-xl"
-            >
-              Garanta já o seu espaço!
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </a>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+      </div>
+    </section>
   );
 }
