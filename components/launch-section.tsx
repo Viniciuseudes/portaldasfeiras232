@@ -21,7 +21,7 @@ export function LaunchSection() {
           {/* Imagem da campanha */}
           <div className="relative">
             <Image
-              src="/images/camisa.png"
+              src="/indicathalyson.png"
               alt="Lançamento do Portal das Feiras 232 em Março de 2026"
               width={600}
               height={600}
@@ -37,7 +37,7 @@ export function LaunchSection() {
 
             <div className="flex flex-col w-full items-center lg:items-start">
               <h2 className="text-6xl lg:text-8xl font-bold text-primary leading-none font-[family-name:var(--font-poppins)]">
-                OUTUBRO DE
+               NOVEMBRO DE
               </h2>
               <h2 className="text-6xl lg:text-8xl font-bold text-primary leading-none font-[family-name:var(--font-poppins)]">
                 2026
