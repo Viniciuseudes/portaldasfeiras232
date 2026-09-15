@@ -52,6 +52,10 @@ export function InfrastructureSection() {
     };
   }, []);
 
+  const whatsappNumber = "5581993831048";
+  const whatsappMessage = "Olá! Tenho interesse em garantir meu espaço e gostaria de mais informações sobre a infraestrutura.";
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
   return (
     <section
       ref={sectionRef}
@@ -107,18 +111,16 @@ export function InfrastructureSection() {
             <Button
               size="lg"
               className="bg-accent hover:bg-accent/90 text-white px-8 py-4 text-lg"
-              onClick={() => {
-                const whatsappNumber = "5581993831048";
-                const whatsappMessage =
-                  "Olá! Tenho interesse em garantir meu espaço e gostaria de mais informações sobre a infraestrutura.";
-                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                  whatsappMessage,
-                )}`;
-                window.open(whatsappLink, "_blank");
-              }}
+              asChild
             >
-              <Phone className="w-5 h-5 mr-2" />
-              Quero falar com especialista!
+              <a 
+                href={whatsappLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Phone className="w-5 h-5 mr-2" />
+                Quero saber mais e sair na frente
+              </a>
             </Button>
           </div>
 
@@ -135,8 +137,8 @@ export function InfrastructureSection() {
                   preload="metadata"
                   className="w-full h-full object-cover"
                 >
-                  <source src="/trafegolojistas.mp4" type="video/mp4" />O seu
-                  navegador não suporta o elemento de vídeo.
+                  <source src="/trafegologistas.mp4" type="video/mp4" />
+                  O seu navegador não suporta o elemento de vídeo.
                 </video>
               </div>
             </div>
