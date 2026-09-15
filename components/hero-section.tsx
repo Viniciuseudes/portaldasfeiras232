@@ -88,8 +88,8 @@ const gridItems = [
     id: "tall-image",
     content: (
       <Image
-        src="/mulher.png"
-        alt="mulher232"
+        src="/thalyson.jpeg"
+        alt="Thalyson"
         fill
         className="object-cover"
       />
