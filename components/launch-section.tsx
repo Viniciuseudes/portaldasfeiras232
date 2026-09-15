@@ -22,7 +22,7 @@ export function LaunchSection() {
           <div className="relative">
             <Image
               src="/indicathalyson.png"
-              alt="Lançamento do Portal das Feiras 232 em Março de 2026"
+              alt="Lançamentoo2 do Portal das Feiras 232 em Março de 2026"
               width={600}
               height={600}
               className="rounded-2xl mx-auto"
